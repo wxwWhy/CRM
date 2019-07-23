@@ -26,7 +26,7 @@
     });
 </script>
 
-<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+<!-- 左侧导航区域（可配合layui已有的垂直导航11） -->
 <ul class="layui-nav layui-nav-tree"  lay-filter="test">
     <c:forEach items="${rootMenulist.children}" var="menuList">
         <c:if test="${empty menuList.children}">
