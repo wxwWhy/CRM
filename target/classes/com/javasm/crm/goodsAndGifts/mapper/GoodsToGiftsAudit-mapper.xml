@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javasm.crm.goodsAndGifts.mapper.GoodsToGiftsAuditDao">
+	<resultMap id="BaseResultMap" type="com.javasm.crm.goodsAndGifts.entity.GoodsAudit">
+   
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gname" jdbcType="VARCHAR" property="gname" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="reviewer" jdbcType="VARCHAR" property="reviewer" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+  </resultMap>
+  <select id="QueryAudit" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsAudit">
+      select * from goods_audit
+  </select>
+  <select id="Querybtn" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsAudit">
+      select * from goods_audit where id=#{id}
+  </select>
+  <update id="Audit" parameterType="com.javasm.crm.goodsAndGifts.entity.GoodsAudit">
+       update goods_audit set reviewer=#{reviewer},time=#{time},status=#{status} where id=#{id}
+  </update>
+  <select id="getNums" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsAudit">
+        select id,addgifts,newprice,code,status from goods_audit
+  </select>
+  <update id="UpdateGood" parameterType="com.javasm.crm.goodsAndGifts.entity.SecondGoods">
+       update secondgoods set sminrepertory=sminrepertory-#{addgifts} where code=#{code}
+  </update>
+  <update id="UpdateGift" parameterType="com.javasm.crm.goodsAndGifts.entity.Gifts">
+       update gifts set number=number+#{addgifts},price=#{newprice} where code=#{code}
+  </update>
+  <delete id="DeleteAudit" parameterType="int">
+       delete from goods_audit where id=#{id}
+  </delete>
+  <select id="GetStatus" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsAudit">
+       select * from goods_audit where status=#{status}
+  </select>
+  </mapper>

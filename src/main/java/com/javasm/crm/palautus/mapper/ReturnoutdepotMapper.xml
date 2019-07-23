@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javasm.crm.palautus.mapper.ReturnoutdepotMapper">
+  <resultMap id="BaseResultMap" type="com.javasm.crm.palautus.entity.Returnoutdepot">
+    <id column="outdepotid" jdbcType="INTEGER" property="outdepotid" />
+    <result column="retutngoodsimei" jdbcType="VARCHAR" property="retutngoodsimei" />
+    <result column="returngoodsbrand" jdbcType="VARCHAR" property="returngoodsbrand" />
+    <result column="returngoodsname" jdbcType="VARCHAR" property="returngoodsname" />
+    <result column="returngoodsmodel" jdbcType="VARCHAR" property="returngoodsmodel" />
+    <result column="returngoodscolor" jdbcType="VARCHAR" property="returngoodscolor" />
+    <result column="returngoodsfactory" jdbcType="VARCHAR" property="returngoodsfactory" />
+    <result column="returngoodsmessage" jdbcType="VARCHAR" property="returngoodsmessage" />
+    <result column="textarea" jdbcType="VARCHAR" property="textarea" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="outdepotmark" jdbcType="VARCHAR" property="outdepotmark" />
+    <result column="maketableperson" jdbcType="VARCHAR" property="maketableperson" />
+    <result column="maketabledate" jdbcType="VARCHAR" property="maketabledate" />
+    <result column="approver" jdbcType="VARCHAR" property="approver" />
+    <result column="approvaltime" jdbcType="VARCHAR" property="approvaltime" />
+    <result column="approvalstatus" jdbcType="VARCHAR" property="approvalstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    outdepotid, retutngoodsimei, returngoodsbrand, returngoodsname, returngoodsmodel, 
+    returngoodscolor, returngoodsfactory, returngoodsmessage, textarea, location, area, 
+    remark, outdepotmark, maketableperson, maketabledate, approver, approvaltime, approvalstatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from returnoutdepot
+    where outdepotid = #{outdepotid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from returnoutdepot
+    where outdepotid = #{outdepotid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.javasm.crm.palautus.entity.Returnoutdepot">
+    insert into returnoutdepot (outdepotid, retutngoodsimei, returngoodsbrand, 
+      returngoodsname, returngoodsmodel, returngoodscolor, 
+      returngoodsfactory, returngoodsmessage, 
+      textarea, location, area, 
+      remark, outdepotmark, maketableperson, 
+      maketabledate, approver, approvaltime, 
+      approvalstatus)
+    values (#{outdepotid,jdbcType=INTEGER}, #{retutngoodsimei,jdbcType=VARCHAR}, #{returngoodsbrand,jdbcType=VARCHAR}, 
+      #{returngoodsname,jdbcType=VARCHAR}, #{returngoodsmodel,jdbcType=VARCHAR}, #{returngoodscolor,jdbcType=VARCHAR}, 
+      #{returngoodsfactory,jdbcType=VARCHAR}, #{returngoodsmessage,jdbcType=VARCHAR}, 
+      #{textarea,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{outdepotmark,jdbcType=VARCHAR}, #{maketableperson,jdbcType=VARCHAR}, 
+      #{maketabledate,jdbcType=VARCHAR}, #{approver,jdbcType=VARCHAR}, #{approvaltime,jdbcType=VARCHAR}, 
+      #{approvalstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.javasm.crm.palautus.entity.Returnoutdepot">
+    insert into returnoutdepot
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="outdepotid != null">
+        outdepotid,
+      </if>
+      <if test="retutngoodsimei != null">
+        retutngoodsimei,
+      </if>
+      <if test="returngoodsbrand != null">
+        returngoodsbrand,
+      </if>
+      <if test="returngoodsname != null">
+        returngoodsname,
+      </if>
+      <if test="returngoodsmodel != null">
+        returngoodsmodel,
+      </if>
+      <if test="returngoodscolor != null">
+        returngoodscolor,
+      </if>
+      <if test="returngoodsfactory != null">
+        returngoodsfactory,
+      </if>
+      <if test="returngoodsmessage != null">
+        returngoodsmessage,
+      </if>
+      <if test="textarea != null">
+        textarea,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="outdepotmark != null">
+        outdepotmark,
+      </if>
+      <if test="maketableperson != null">
+        maketableperson,
+      </if>
+      <if test="maketabledate != null">
+        maketabledate,
+      </if>
+      <if test="approver != null">
+        approver,
+      </if>
+      <if test="approvaltime != null">
+        approvaltime,
+      </if>
+      <if test="approvalstatus != null">
+        approvalstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="outdepotid != null">
+        #{outdepotid,jdbcType=INTEGER},
+      </if>
+      <if test="retutngoodsimei != null">
+        #{retutngoodsimei,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsbrand != null">
+        #{returngoodsbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsname != null">
+        #{returngoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsmodel != null">
+        #{returngoodsmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodscolor != null">
+        #{returngoodscolor,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsfactory != null">
+        #{returngoodsfactory,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsmessage != null">
+        #{returngoodsmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="textarea != null">
+        #{textarea,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="outdepotmark != null">
+        #{outdepotmark,jdbcType=VARCHAR},
+      </if>
+      <if test="maketableperson != null">
+        #{maketableperson,jdbcType=VARCHAR},
+      </if>
+      <if test="maketabledate != null">
+        #{maketabledate,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null">
+        #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvaltime != null">
+        #{approvaltime,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalstatus != null">
+        #{approvalstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.javasm.crm.palautus.entity.Returnoutdepot">
+    update returnoutdepot
+    <set>
+      <if test="retutngoodsimei != null">
+        retutngoodsimei = #{retutngoodsimei,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsbrand != null">
+        returngoodsbrand = #{returngoodsbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsname != null">
+        returngoodsname = #{returngoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsmodel != null">
+        returngoodsmodel = #{returngoodsmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodscolor != null">
+        returngoodscolor = #{returngoodscolor,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsfactory != null">
+        returngoodsfactory = #{returngoodsfactory,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsmessage != null">
+        returngoodsmessage = #{returngoodsmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="textarea != null">
+        textarea = #{textarea,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="outdepotmark != null">
+        outdepotmark = #{outdepotmark,jdbcType=VARCHAR},
+      </if>
+      <if test="maketableperson != null">
+        maketableperson = #{maketableperson,jdbcType=VARCHAR},
+      </if>
+      <if test="maketabledate != null">
+        maketabledate = #{maketabledate,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null">
+        approver = #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvaltime != null">
+        approvaltime = #{approvaltime,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalstatus != null">
+        approvalstatus = #{approvalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalmessage != null">
+      	approvalmessage = #{approvalmessage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where outdepotid = #{outdepotid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.javasm.crm.palautus.entity.Returnoutdepot">
+    update returnoutdepot
+    set retutngoodsimei = #{retutngoodsimei,jdbcType=VARCHAR},
+      returngoodsbrand = #{returngoodsbrand,jdbcType=VARCHAR},
+      returngoodsname = #{returngoodsname,jdbcType=VARCHAR},
+      returngoodsmodel = #{returngoodsmodel,jdbcType=VARCHAR},
+      returngoodscolor = #{returngoodscolor,jdbcType=VARCHAR},
+      returngoodsfactory = #{returngoodsfactory,jdbcType=VARCHAR},
+      returngoodsmessage = #{returngoodsmessage,jdbcType=VARCHAR},
+      textarea = #{textarea,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      outdepotmark = #{outdepotmark,jdbcType=VARCHAR},
+      maketableperson = #{maketableperson,jdbcType=VARCHAR},
+      maketabledate = #{maketabledate,jdbcType=VARCHAR},
+      approver = #{approver,jdbcType=VARCHAR},
+      approvaltime = #{approvaltime,jdbcType=VARCHAR},
+      approvalstatus = #{approvalstatus,jdbcType=VARCHAR}
+    where outdepotid = #{outdepotid,jdbcType=INTEGER}
+  </update>
+  <select id="all" parameterType="com.javasm.crm.palautus.entity.Returnoutdepot" resultType="com.javasm.crm.palautus.entity.Returnoutdepot">
+  	select * from returnoutdepot
+  	<where>
+  		<if test="outdepotid!=null and outdepotid!='' and outdepotid!=0">
+  			and outdepotid=#{outdepotid }
+  		</if>
+  		<if test="outdepotmark!=null and outdepotmark!=''">
+  			and outdepotmark like "%"#{outdepotmark}"%"
+  		</if>
+  		<if test="approvalstatus!=null and approvalstatus!=''">
+  			and approvalstatus like "%"#{approvalstatus}"%"
+  		</if>
+  		<if test="maketableperson!=null and maketableperson!=''">
+  			and maketableperson like "%"#{maketableperson}"%"
+  		</if>
+  	</where>
+  </select>
+</mapper>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javasm.crm.palautus.mapper.ReturnindepotMapper">
+  <resultMap id="BaseResultMap" type="com.javasm.crm.palautus.entity.Returnindepot">
+    <id column="indepotid" jdbcType="INTEGER" property="indepotid" />
+    <result column="retutnrepairgoodsIMEI" jdbcType="VARCHAR" property="retutnrepairgoodsimei" />
+    <result column="returnrepirgoodsbrand" jdbcType="VARCHAR" property="returnrepirgoodsbrand" />
+    <result column="returnrepirgoodsname" jdbcType="VARCHAR" property="returnrepirgoodsname" />
+    <result column="returnrepirgoodsmodel" jdbcType="VARCHAR" property="returnrepirgoodsmodel" />
+    <result column="returnrepirgoodscolor" jdbcType="VARCHAR" property="returnrepirgoodscolor" />
+    <result column="returnrepirgoodsfactory" jdbcType="VARCHAR" property="returnrepirgoodsfactory" />
+    <result column="returnrepirgoodsmessage" jdbcType="VARCHAR" property="returnrepirgoodsmessage" />
+    <result column="returnrepirgoodsstatus" jdbcType="VARCHAR" property="returnrepirgoodsstatus" />
+    <result column="returnrepirgoodsbeforeimei" jdbcType="VARCHAR" property="returnrepirgoodsbeforeimei" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="indepotmark" jdbcType="VARCHAR" property="indepotmark" />
+    <result column="maketableperson" jdbcType="VARCHAR" property="maketableperson" />
+    <result column="maketabledate" jdbcType="VARCHAR" property="maketabledate" />
+    <result column="approver" jdbcType="VARCHAR" property="approver" />
+    <result column="approvaltime" jdbcType="VARCHAR" property="approvaltime" />
+    <result column="approvalstatus" jdbcType="VARCHAR" property="approvalstatus" />
+    <result column="approvalmessage" jdbcType="VARCHAR" property="approvalmessage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    indepotid, retutnrepairgoodsIMEI, returnrepirgoodsbrand, returnrepirgoodsname, returnrepirgoodsmodel, 
+    returnrepirgoodscolor, returnrepirgoodsfactory, returnrepirgoodsmessage, returnrepirgoodsstatus, 
+    returnrepirgoodsbeforeimei, location, area, indepotmark, maketableperson, maketabledate, 
+    approver, approvaltime, approvalstatus, approvalmessage
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from returnindepot
+    where indepotid = #{indepotid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from returnindepot
+    where indepotid = #{indepotid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.javasm.crm.palautus.entity.Returnindepot">
+    insert into returnindepot (indepotid, retutnrepairgoodsIMEI, 
+      returnrepirgoodsbrand, returnrepirgoodsname, 
+      returnrepirgoodsmodel, returnrepirgoodscolor, 
+      returnrepirgoodsfactory, returnrepirgoodsmessage, 
+      returnrepirgoodsstatus, returnrepirgoodsbeforeimei, 
+      location, area, indepotmark, 
+      maketableperson, maketabledate, approver, 
+      approvaltime, approvalstatus, approvalmessage
+      )
+    values (#{indepotid,jdbcType=INTEGER}, #{retutnrepairgoodsimei,jdbcType=VARCHAR}, 
+      #{returnrepirgoodsbrand,jdbcType=VARCHAR}, #{returnrepirgoodsname,jdbcType=VARCHAR}, 
+      #{returnrepirgoodsmodel,jdbcType=VARCHAR}, #{returnrepirgoodscolor,jdbcType=VARCHAR}, 
+      #{returnrepirgoodsfactory,jdbcType=VARCHAR}, #{returnrepirgoodsmessage,jdbcType=VARCHAR}, 
+      #{returnrepirgoodsstatus,jdbcType=VARCHAR}, #{returnrepirgoodsbeforeimei,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{indepotmark,jdbcType=VARCHAR}, 
+      #{maketableperson,jdbcType=VARCHAR}, #{maketabledate,jdbcType=VARCHAR}, #{approver,jdbcType=VARCHAR}, 
+      #{approvaltime,jdbcType=VARCHAR}, #{approvalstatus,jdbcType=VARCHAR}, #{approvalmessage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.javasm.crm.palautus.entity.Returnindepot">
+    insert into returnindepot
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indepotid != null">
+        indepotid,
+      </if>
+      <if test="retutnrepairgoodsimei != null">
+        retutnrepairgoodsIMEI,
+      </if>
+      <if test="returnrepirgoodsbrand != null">
+        returnrepirgoodsbrand,
+      </if>
+      <if test="returnrepirgoodsname != null">
+        returnrepirgoodsname,
+      </if>
+      <if test="returnrepirgoodsmodel != null">
+        returnrepirgoodsmodel,
+      </if>
+      <if test="returnrepirgoodscolor != null">
+        returnrepirgoodscolor,
+      </if>
+      <if test="returnrepirgoodsfactory != null">
+        returnrepirgoodsfactory,
+      </if>
+      <if test="returnrepirgoodsmessage != null">
+        returnrepirgoodsmessage,
+      </if>
+      <if test="returnrepirgoodsstatus != null">
+        returnrepirgoodsstatus,
+      </if>
+      <if test="returnrepirgoodsbeforeimei != null">
+        returnrepirgoodsbeforeimei,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="indepotmark != null">
+        indepotmark,
+      </if>
+      <if test="maketableperson != null">
+        maketableperson,
+      </if>
+      <if test="maketabledate != null">
+        maketabledate,
+      </if>
+      <if test="approver != null">
+        approver,
+      </if>
+      <if test="approvaltime != null">
+        approvaltime,
+      </if>
+      <if test="approvalstatus != null">
+        approvalstatus,
+      </if>
+      <if test="approvalmessage != null">
+        approvalmessage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="indepotid != null">
+        #{indepotid,jdbcType=INTEGER},
+      </if>
+      <if test="retutnrepairgoodsimei != null">
+        #{retutnrepairgoodsimei,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsbrand != null">
+        #{returnrepirgoodsbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsname != null">
+        #{returnrepirgoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsmodel != null">
+        #{returnrepirgoodsmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodscolor != null">
+        #{returnrepirgoodscolor,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsfactory != null">
+        #{returnrepirgoodsfactory,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsmessage != null">
+        #{returnrepirgoodsmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsstatus != null">
+        #{returnrepirgoodsstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsbeforeimei != null">
+        #{returnrepirgoodsbeforeimei,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="indepotmark != null">
+        #{indepotmark,jdbcType=VARCHAR},
+      </if>
+      <if test="maketableperson != null">
+        #{maketableperson,jdbcType=VARCHAR},
+      </if>
+      <if test="maketabledate != null">
+        #{maketabledate,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null">
+        #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvaltime != null">
+        #{approvaltime,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalstatus != null">
+        #{approvalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalmessage != null">
+        #{approvalmessage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.javasm.crm.palautus.entity.Returnindepot">
+    update returnindepot
+    <set>
+      <if test="retutnrepairgoodsimei != null">
+        retutnrepairgoodsIMEI = #{retutnrepairgoodsimei,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsbrand != null">
+        returnrepirgoodsbrand = #{returnrepirgoodsbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsname != null">
+        returnrepirgoodsname = #{returnrepirgoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsmodel != null">
+        returnrepirgoodsmodel = #{returnrepirgoodsmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodscolor != null">
+        returnrepirgoodscolor = #{returnrepirgoodscolor,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsfactory != null">
+        returnrepirgoodsfactory = #{returnrepirgoodsfactory,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsmessage != null">
+        returnrepirgoodsmessage = #{returnrepirgoodsmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsstatus != null">
+        returnrepirgoodsstatus = #{returnrepirgoodsstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="returnrepirgoodsbeforeimei != null">
+        returnrepirgoodsbeforeimei = #{returnrepirgoodsbeforeimei,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="indepotmark != null">
+        indepotmark = #{indepotmark,jdbcType=VARCHAR},
+      </if>
+      <if test="maketableperson != null">
+        maketableperson = #{maketableperson,jdbcType=VARCHAR},
+      </if>
+      <if test="maketabledate != null">
+        maketabledate = #{maketabledate,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null">
+        approver = #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvaltime != null">
+        approvaltime = #{approvaltime,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalstatus != null">
+        approvalstatus = #{approvalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalmessage != null">
+        approvalmessage = #{approvalmessage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where indepotid = #{indepotid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.javasm.crm.palautus.entity.Returnindepot">
+    update returnindepot
+    set retutnrepairgoodsIMEI = #{retutnrepairgoodsimei,jdbcType=VARCHAR},
+      returnrepirgoodsbrand = #{returnrepirgoodsbrand,jdbcType=VARCHAR},
+      returnrepirgoodsname = #{returnrepirgoodsname,jdbcType=VARCHAR},
+      returnrepirgoodsmodel = #{returnrepirgoodsmodel,jdbcType=VARCHAR},
+      returnrepirgoodscolor = #{returnrepirgoodscolor,jdbcType=VARCHAR},
+      returnrepirgoodsfactory = #{returnrepirgoodsfactory,jdbcType=VARCHAR},
+      returnrepirgoodsmessage = #{returnrepirgoodsmessage,jdbcType=VARCHAR},
+      returnrepirgoodsstatus = #{returnrepirgoodsstatus,jdbcType=VARCHAR},
+      returnrepirgoodsbeforeimei = #{returnrepirgoodsbeforeimei,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      indepotmark = #{indepotmark,jdbcType=VARCHAR},
+      maketableperson = #{maketableperson,jdbcType=VARCHAR},
+      maketabledate = #{maketabledate,jdbcType=VARCHAR},
+      approver = #{approver,jdbcType=VARCHAR},
+      approvaltime = #{approvaltime,jdbcType=VARCHAR},
+      approvalstatus = #{approvalstatus,jdbcType=VARCHAR},
+      approvalmessage = #{approvalmessage,jdbcType=VARCHAR}
+    where indepotid = #{indepotid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="all" parameterType="com.javasm.crm.palautus.entity.Returnindepot" resultType="com.javasm.crm.palautus.entity.Returnindepot">
+  	select * from returnindepot
+  	<where>
+  		<if test="indepotid!=null and indepotid!='' and indepotid!=0">
+  			and indepotid=#{indepotid }
+  		</if>
+  		<if test="indepotmark!=null and indepotmark!=''">
+  			and indepotmark like "%"#{indepotmark}"%"
+  		</if>
+  		<if test="approvalstatus!=null and approvalstatus!=''">
+  			and approvalstatus like "%"#{approvalstatus}"%"
+  		</if>
+  		<if test="maketableperson!=null and maketableperson!=''">
+  			and maketableperson like "%"#{maketableperson}"%"
+  		</if>
+  	</where>
+  </select>
+</mapper>

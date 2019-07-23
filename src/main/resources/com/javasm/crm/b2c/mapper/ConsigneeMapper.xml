@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javasm.crm.b2c.mapper.ConsigneeMapper">
+  <resultMap id="BaseResultMap" type="com.javasm.crm.b2c.entity.Consignee">
+    
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="consigneeName" jdbcType="VARCHAR" property="consigneename" />
+    <result column="memberAccount" jdbcType="INTEGER" property="memberaccount" />
+    <result column="telPhone" jdbcType="VARCHAR" property="telphone" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="zipCode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="shipingAddress" jdbcType="VARCHAR" property="shipingaddress" />
+    <result column="distributionRegion" jdbcType="VARCHAR" property="distributionregion" />
+    <result column="distributionWay" jdbcType="VARCHAR" property="distributionway" />
+    <result column="distributionCosts" jdbcType="INTEGER" property="distributioncosts" />
+    <result column="modeOfPayment" jdbcType="VARCHAR" property="modeofpayment" />
+    <result column="toTheTime" jdbcType="VARCHAR" property="tothetime" />
+    <result column="emailAddress" jdbcType="VARCHAR" property="emailaddress" />
+    <result column="remitter" jdbcType="VARCHAR" property="remitter" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, consigneeName, memberAccount, telPhone, phone, zipCode, shipingAddress, 
+    distributionRegion, distributionWay, distributionCosts, modeOfPayment, toTheTime, 
+    emailAddress, remitter
+  </sql>
+  
+  
+  <!-- 根据会员账号查询会员资料 -->
+   <select id="selectTwo" parameterType="Integer" resultType="com.javasm.crm.b2c.entity.Consignee">
+     select * from consignee where memberAccount =#{id}
+   </select>
+  
+  <select id="selectConsigneeByid" parameterType="int" resultType="com.javasm.crm.b2c.entity.Consignee">
+      SELECT
+			*
+			FROM
+			consignee
+			WHERE
+			id = #{id}
+   </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</mapper>

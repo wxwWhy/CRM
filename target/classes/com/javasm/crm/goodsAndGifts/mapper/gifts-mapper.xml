@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javasm.crm.goodsAndGifts.mapper.GiftsDao">
+	<resultMap id="BaseResultMap" type="com.javasm.crm.goodsAndGifts.entity.Gifts">
+   
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gname" jdbcType="INTEGER" property="gname" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="cost" jdbcType="INTEGER" property="cost" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+  </resultMap>
+    
+	<select id="getGifts" resultMap="BaseResultMap">
+		select * from gifts 
+	</select>
+	<select id="getGiftByID" resultType="com.javasm.crm.goodsAndGifts.entity.Gifts" parameterType="int">
+		select * from gifts where id=#{id}
+	</select>
+	<update id="update" parameterType="com.javasm.crm.goodsAndGifts.entity.Gifts">
+           update gifts
+           <set>
+              
+              <if test="gname !=null">
+                 gname = #{gname},
+              </if>
+              <if test="type !=null">
+                 type = #{type},
+              </if>
+               <if test="number !=null">
+                 number = #{number},
+              </if>
+              <if test="price !=null">
+                 price = #{price},
+              </if>
+              <if test="cost !=null">
+                 cost = #{cost},
+              </if>
+              <if test="state !=null">
+                 state = #{state},
+              </if>
+           </set>
+            where id=#{id}
+     </update>
+     <delete id="delGifts" parameterType="int">
+          delete from gifts where id = #{id}
+          
+     </delete>
+     <insert id="add" parameterType="com.javasm.crm.goodsAndGifts.entity.Gifts">
+		insert into gifts(gname,type,number,price,cost,state) values(#{gname},#{type},#{number},#{price},#{cost},#{state})
+	</insert>
+	<select id="QueryGift" resultMap="BaseResultMap">
+		select * from gifts 
+		<where>
+		     <if test="gname !=null and gname !='' ">
+		       and gname like "%"#{gname}"%"
+		     </if>
+		     <if test="type !=null and type !='' ">
+		       and type like "%"#{type}"%"
+		     </if>
+		</where>
+	</select>
+</mapper>

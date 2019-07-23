@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javasm.crm.palautus.mapper.returngoodsMapper">
+  <resultMap id="BaseResultMap" type="com.javasm.crm.palautus.entity.returngoods">
+    <result column="retutngoodsIMEI" jdbcType="INTEGER" property="retutngoodsimei" />
+    <result column="returngoodsbrand" jdbcType="VARCHAR" property="returngoodsbrand" />
+    <result column="returngoodsname" jdbcType="VARCHAR" property="returngoodsname" />
+    <result column="returngoodsmodel" jdbcType="VARCHAR" property="returngoodsmodel" />
+    <result column="returngoodscolor" jdbcType="VARCHAR" property="returngoodscolor" />
+    <result column="returngoodsfactory" jdbcType="VARCHAR" property="returngoodsfactory" />
+    <result column="returngoodsmessage" jdbcType="VARCHAR" property="returngoodsmessage" />
+    <result column="returngoodsconfig" jdbcType="VARCHAR" property="returngoodsconfig" />
+    <result column="returnoutid" jdbcType="INTEGER" property="returnoutid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.javasm.crm.palautus.entity.returngoods">
+    insert into returngoods (retutngoodsIMEI, returngoodsbrand, 
+      returngoodsname, returngoodsmodel, returngoodscolor, 
+      returngoodsfactory, returngoodsmessage, 
+      returngoodsconfig, returnoutid)
+    values (#{retutngoodsimei,jdbcType=INTEGER}, #{returngoodsbrand,jdbcType=VARCHAR}, 
+      #{returngoodsname,jdbcType=VARCHAR}, #{returngoodsmodel,jdbcType=VARCHAR}, #{returngoodscolor,jdbcType=VARCHAR}, 
+      #{returngoodsfactory,jdbcType=VARCHAR}, #{returngoodsmessage,jdbcType=VARCHAR}, 
+      #{returngoodsconfig,jdbcType=VARCHAR}, #{returnoutid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.javasm.crm.palautus.entity.returngoods">
+    insert into returngoods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="retutngoodsimei != null">
+        retutngoodsIMEI,
+      </if>
+      <if test="returngoodsbrand != null">
+        returngoodsbrand,
+      </if>
+      <if test="returngoodsname != null">
+        returngoodsname,
+      </if>
+      <if test="returngoodsmodel != null">
+        returngoodsmodel,
+      </if>
+      <if test="returngoodscolor != null">
+        returngoodscolor,
+      </if>
+      <if test="returngoodsfactory != null">
+        returngoodsfactory,
+      </if>
+      <if test="returngoodsmessage != null">
+        returngoodsmessage,
+      </if>
+      <if test="returngoodsconfig != null">
+        returngoodsconfig,
+      </if>
+      <if test="returnoutid != null">
+        returnoutid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="retutngoodsimei != null">
+        #{retutngoodsimei,jdbcType=INTEGER},
+      </if>
+      <if test="returngoodsbrand != null">
+        #{returngoodsbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsname != null">
+        #{returngoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsmodel != null">
+        #{returngoodsmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodscolor != null">
+        #{returngoodscolor,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsfactory != null">
+        #{returngoodsfactory,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsmessage != null">
+        #{returngoodsmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="returngoodsconfig != null">
+        #{returngoodsconfig,jdbcType=VARCHAR},
+      </if>
+      <if test="returnoutid != null">
+        #{returnoutid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="all" parameterType="com.javasm.crm.palautus.entity.returngoods" resultType="com.javasm.crm.palautus.entity.returngoods">
+  	select * from returngoods
+  	<where>
+  		<if test="retutngoodsimei!=null and retutngoodsimei!='' and retutngoodsimei!=0">
+  			and retutngoodsIMEI =  "%"#{returngoodsimei}"%"
+  		</if>
+  		<if test="returngoodsname!=null and returngoodsname!=''">
+  			and returngoodsname like "%"#{returngoodsname}"%"
+  		</if>
+  		<if test="returngoodsmodel!=null and returngoodsmodel!=''">
+  			and returngoodsmodel like "%"#{returngoodsmodel}"%"
+  		</if>
+  		<if test="returngoodscolor!=null and returngoodscolor!=''">
+  			and  returngoodscolor like "%"#{returngoodscolor}"%"
+  		</if>
+  		<if test="returngoodsfactory!=null and returngoodsfactory!=''">
+  			and returngoodsfactory like "%"#{returngoodsfactory}"%"
+  		</if>
+  	</where>
+  </select>
+</mapper>

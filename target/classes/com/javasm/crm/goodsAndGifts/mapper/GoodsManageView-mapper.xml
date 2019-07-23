@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javasm.crm.goodsAndGifts.mapper.GoodsManageViewDao">
+	
+	 <resultMap id="BaseResultMap" type="com.javasm.crm.goodsAndGifts.entity.FirstGoods">
+	    <id column="fid"  property="fid" />
+	    <result column="ffilenumber"  property="ffilenumber" />
+	    <result column="fbusinesspattern"  property="fbusinesspattern" />
+	    <result column="fmedic"  property="fmedic" />
+	    <result column="fbasepurchasepattern"  property="fbasepurchasepattern" />
+	    <result column="fbasestandby"  property="fbasestandby" />
+	    <result column="fbasecolor"  property="fbasecolor" />
+	    <result column="fbasemodel"  property="fbasemodel" />
+	    <result column="fbasebrand"  property="fbasebrand" />
+	    <result column="fbasetype"  property="fbasetype" />
+	    <result column="fname"  property="fname" />
+	    <result column="ftype"  property="ftype" />
+	    <result column="fpurchaseprice"  property="fpurchaseprice" />
+		<result column="fmarketprice"  property="fmarketprice" />
+	    <result column="fshoppingmallprice"  property="fshoppingmallprice" />
+	    <result column="fminrepertory"  property="fminrepertory" />
+	    <result column="fifpurchase"  property="fifpurchase" />
+	  </resultMap>
+
+			<!--新增一类商品-->
+	<insert id="insertFirstGoods" parameterType="com.javasm.crm.goodsAndGifts.entity.FirstGoods">
+		INSERT INTO `firstgoods` (`ffilenumber`,`fbusinesspattern`,`fmedic`,`fbasepurchasepattern`,`fbasestandby`,`fbasecolor`,`fbasemodel`,`fbasebrand`,`fbasetype`,`fname`,`ftype`,`fpurchaseprice`,`fmarketprice`,`fshoppingmallprice`, `fminrepertory`, `fifpurchase`) 
+				VALUES( #{ffilenumber},
+					    #{fbusinesspattern},
+					    #{fmedic},
+					    #{fbasepurchasepattern},
+					    #{fbasestandby},
+					    #{fbasecolor},
+					  	#{fbasemodel},
+					    #{fbasebrand},
+					    #{fbasetype},
+					    #{fname},
+					    #{ftype},
+					    #{fpurchaseprice},
+					    #{fmarketprice},
+					    #{fshoppingmallprice},
+					    #{fminrepertory},
+					    #{fifpurchase}
+  						)		
+	</insert>
+	
+	<select id="selDistinctBrand" resultType="java.lang.String">
+	 SELECT DISTINCT brand_name FROM brand
+  	</select>
+		
+		<!--新增二类商品-->
+	<insert id="insertSecondGoods" parameterType="com.javasm.crm.goodsAndGifts.entity.SecondGoods">
+										INSERT INTO `secondgoods` (
+										  `sbrand`,
+										  `smodel`,
+										  `scolor`,
+										  `sname`,
+										  `stype`,
+										  `smarketprice`,
+										  `sshoppingprice`,
+										  `sminrepertory`,
+										  `sifpurchase`
+										
+										) 
+										VALUES
+										  (
+										    #{sbrand},
+										    #{smodel},
+										    #{scolor},
+										    #{sname},
+										    #{stype},
+										     #{smarketprice},
+										    #{sshoppingprice},
+										    #{sminrepertory},
+										    #{sifpurchase}
+										  )		
+	</insert>
+	
+	
+	<!--二类商品颜色-->
+	<select id="selsDistinctColor" resultType="java.lang.String">
+	 	SELECT DISTINCT  scolor FROM secondgoods WHERE scolor IS NOT NULL
+  	</select>
+		
+	<!--一类类商品颜色-->
+	<select id="selfDistinctColor" resultType="java.lang.String">
+	 	SELECT DISTINCT  fbasecolor FROM firstgoods WHERE fbasecolor IS NOT NULL
+  	</select>  	
+	
+	<!--	获得全部的不同品牌 名称 -->
+	<select id="getAllBrandName" resultType="java.lang.String">
+		SELECT DISTINCT  brand_name FROM brand WHERE brand_name IS NOT NULL
+	</select>  	
+  	
+
+	 <select id="getallFirstGoods" resultMap="BaseResultMap" parameterType="com.javasm.crm.goodsAndGifts.entity.FirstGoods" >
+	  SELECT fid,ffilenumber,fbusinesspattern,fmedic,fbasepurchasepattern,fbasestandby,fbasecolor,fbasemodel,fbasebrand,fbasetype,fname,ftype,fpurchaseprice,fmarketprice,fshoppingmallprice,fminrepertory,fifpurchase FROM `firstgoods`
+    	<where>
+	    	<if test="fname!=null and fname!=''">
+	    		and `fname`  like CONCAT(CONCAT('%',#{fname}),'%')
+	    	</if>
+	    	<if test="fbasebrand!=null and fbasebrand!=''">
+	    		and `fbasebrand`  like CONCAT(CONCAT('%',#{fbasebrand}),'%')
+	    	</if>
+	    	<if test="fbasecolor!=null and fbasecolor!=''">
+	    		and `fbasecolor`  like CONCAT(CONCAT('%',#{fbasecolor}),'%')
+	    	</if>
+	    	<if test="fbasemodel!=null and fbasemodel!=''">
+	    		and `fbasemodel`  like CONCAT(CONCAT('%',#{fbasemodel}),'%')
+	    	</if>
+	    	<if test="fbasetype!=null and fbasetype!=''">
+	    		and `fbasetype`  like CONCAT(CONCAT('%',#{fbasetype}),'%')
+	    	</if>
+	    	
+	    </where>
+	    
+  	</select>	
+	
+  	
+	<update id="updateFirstGoods" parameterType="com.javasm.crm.goodsAndGifts.entity.FirstGoods" >
+		UPDATE 
+		      `firstgoods` 
+		SET
+		  `fname` = #{fname},
+		  `ftype` = #{ftype},
+		  `fmarketprice` = #{fmarketprice},
+		  `fshoppingmallprice` = #{fshoppingmallprice},
+		  `fminrepertory` = #{fminrepertory},
+		  `fifpurchase` = #{fifpurchase} 
+		WHERE `fid` = #{fid} 
+		
+	</update>
+  	 
+  	 <delete id="deleteFirstGoods" parameterType="com.javasm.crm.goodsAndGifts.entity.FirstGoods" >
+		DELETE 
+			FROM
+			     `firstgoods` 
+			WHERE `fid` = #{fid} 
+  	 	
+  	 </delete>	
+
+  	<select id="getGoodById" parameterType="Integer" resultType="com.javasm.crm.goodsAndGifts.entity.FirstGoods">
+  		select `fid`,`fname`,`fpurchaseprice`,`fmarketprice` from `firstgoods` where `fid`=#{fid}
+  	</select>
+
+  	</mapper>
+
+
+
+

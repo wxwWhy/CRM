@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javasm.crm.goodsAndGifts.mapper.GiftsToGoodsDao">
+	<resultMap id="BaseResultMap" type="com.javasm.crm.goodsAndGifts.entity.GiftsAudit">
+   
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gname" jdbcType="VARCHAR" property="gname" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="reviewer" jdbcType="VARCHAR" property="reviewer" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+  </resultMap>
+    <select id="getAll" resultMap="BaseResultMap">
+       select * from gifts_audit
+  </select>
+   <select id="getAllGoods" resultType="com.javasm.crm.goodsAndGifts.entity.Gifts">
+		select id,gname,type,number,price,cost,color from gifts 
+  </select>
+  <select id="getNewGoodsById" resultType="com.javasm.crm.goodsAndGifts.entity.Gifts">
+		select gname,type,number,price,cost,color,code from gifts where id=#{id}
+  </select>
+  
+  <insert id="AddAudit" parameterType="com.javasm.crm.goodsAndGifts.entity.GiftsAudit">
+	    insert into gifts_audit(gname,type,price,number,code,newprice,addgifts,status) value(#{gname},#{type},#{price},#{number},#{code},#{newprice},#{addgifts},"未审核")
+  </insert>
+  <select id="getGoodsByCode" resultType="com.javasm.crm.goodsAndGifts.entity.GiftsAudit">
+        select id,gname,type,price,brand,number,code,newprice,addgifts from gifts_audit where id=#{code}
+  </select>
+  <update id="Update" parameterType="com.javasm.crm.goodsAndGifts.entity.GiftsAudit">
+        update gifts_audit set addgifts=#{addgifts},newprice=#{newprice} where id=#{id}
+  </update>
+  <delete id="Delete" parameterType="int">
+        delete from gifts_audit where id=#{id}
+  </delete>
+  <select id="SHGZbtn" resultType="com.javasm.crm.goodsAndGifts.entity.GiftsAudit">
+        select * from gifts_audit where id=#{id}
+  </select>
+  <select id="SSGoods" resultType="com.javasm.crm.goodsAndGifts.entity.GiftsAudit">
+        select * from gifts_audit 
+        <where>
+             <if test="gname !=null and gname !='' " >
+                and gname like "%"#{gname}"%"
+             </if>
+             <if test="type !=null and type !='' ">
+                and type like "%"#{type}"%"
+             </if>
+             <if test="status !=null and status !='' ">
+                and status like "%"#{status}"%"
+             </if>
+        </where>
+  </select>
+</mapper>

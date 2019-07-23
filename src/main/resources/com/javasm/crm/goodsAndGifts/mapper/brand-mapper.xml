@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 可把映射文件理解成dao实现类，一个namespace即代表一个映射文件 。不同的映射文件的namespace不能相同 -->
+<mapper namespace="com.javasm.crm.goodsAndGifts.mapper.BrandDao">
+	
+	<!-- 公共语句块 -->
+	<sql id="selectFieldsBrands">
+		`brand_id`,`brand_name`,`brand_url`,`brand_describe`
+	</sql>
+	
+	<select id="getAllBrands" parameterType="com.javasm.crm.goodsAndGifts.entity.Brand" resultType="com.javasm.crm.goodsAndGifts.entity.Brand">
+		select
+		<include refid="selectFieldsBrands"></include>
+		from `brand`
+		<where>
+			<if test="brand_name !=null and brand_name !='' ">
+				and `brand_name` like "%"#{brand_name}"%"
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据Id查询单个品牌 -->
+	<select id="getBrandById" parameterType="Integer" resultType="com.javasm.crm.goodsAndGifts.entity.Brand">
+		select <include refid="selectFieldsBrands"></include> from `brand` where `brand_id`=#{brand_id}
+	</select>
+	
+	<!-- 批量插入  导入 -->
+	<insert id="batchAddBrands" parameterType="List">
+		insert into `brand`(`brand_name`,`brand_url`,`brand_describe`) values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.brand_name},#{item.brand_url},#{item.brand_describe})
+		</foreach>
+	</insert>
+	
+	<!--新增品牌-->
+	<insert id="addBrand" parameterType="com.javasm.crm.goodsAndGifts.entity.Brand">
+		insert into `brand`(`brand_name`,`brand_url`,`brand_describe`) values(#{brand_name},#{brand_url},#{brand_describe}) 
+	</insert>
+	
+	<!--删除品牌 -->	
+	<delete id="deleteBrandById" parameterType="Integer">
+		delete from `brand` where `brand_id`=#{brand_id}
+	</delete>
+	
+	<!--修改品牌-->
+	<update id="updateBrandById" parameterType="com.javasm.crm.goodsAndGifts.entity.Brand">
+		update `brand`
+		 <set>
+	      <if test="brand_name !=null and brand_name !=''">
+	        brand_name= #{brand_name},
+	      </if>
+	      <if test="brand_url != null and brand_url !=''">
+	        brand_url = #{brand_url},
+	      </if>
+	      <if test="brand_describe != null and brand_describe !=''">
+	        brand_describe = #{brand_describe},
+	      </if>
+	    </set>
+	    where brand_id = #{brand_id}
+	</update>
+
+</mapper>

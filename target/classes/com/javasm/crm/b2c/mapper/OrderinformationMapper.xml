@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javasm.crm.b2c.mapper.OrderinformationMapper">
+  <resultMap id="BaseResultMap" type="com.javasm.crm.b2c.entity.Orderinformation">
+    
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="productId" jdbcType="INTEGER" property="productid" />
+    <result column="productName" jdbcType="VARCHAR" property="productname" />
+    <result column="price" jdbcType="FLOAT" property="price" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="totalMoney" jdbcType="FLOAT" property="totalmoney" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createTime" jdbcType="VARCHAR" property="createtime" />
+    <result column="rejection" jdbcType="VARCHAR" property="rejection" />
+    <result column="rejectionTime" jdbcType="VARCHAR" property="rejectiontime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, productId, productName, price, `number`, totalMoney, creator, createTime, rejection, 
+    rejectionTime
+  </sql>
+  
+  <select id="selectOne" parameterType="Integer" resultType="com.javasm.crm.b2c.entity.Orderinformation">
+     select * from orderinformation where orderId =#{orderid}
+  </select>
+</mapper>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javasm.crm.palautus.mapper.AfterSalesAppealMapper">
+  <resultMap id="BaseResultMap" type="com.javasm.crm.palautus.entity.AfterSalesAppeal">
+    <result column="projectname" jdbcType="VARCHAR" property="projectname" />
+    <result column="projectword" jdbcType="VARCHAR" property="projectword" />
+    <result column="projectproblem" jdbcType="VARCHAR" property="projectproblem" />
+    <result column="projectanswer" jdbcType="VARCHAR" property="projectanswer" />
+    <result column="projectscene" jdbcType="VARCHAR" property="projectscene" />
+    <result column="projectremark" jdbcType="VARCHAR" property="projectremark" />
+    <result column="projectmakeperson" jdbcType="VARCHAR" property="projectmakeperson" />
+    <result column="projectmaketime" jdbcType="VARCHAR" property="projectmaketime" />
+    <result column="projectapproval" jdbcType="VARCHAR" property="projectapproval" />
+    <result column="projectapprovaltime" jdbcType="VARCHAR" property="projectapprovaltime" />
+    <result column="projectapprovalstatus" jdbcType="VARCHAR" property="projectapprovalstatus" />
+  </resultMap>
+  <insert id="insert" parameterType="com.javasm.crm.palautus.entity.AfterSalesAppeal">
+    insert into aftersalesappeal (projectname, projectword, projectproblem, 
+      projectanswer, projectscene, projectremark, 
+      projectmakeperson, projectmaketime, projectapproval, 
+      projectapprovaltime, projectapprovalstatus
+      )
+    values (#{projectname,jdbcType=VARCHAR}, #{projectword,jdbcType=VARCHAR}, #{projectproblem,jdbcType=VARCHAR}, 
+      #{projectanswer,jdbcType=VARCHAR}, #{projectscene,jdbcType=VARCHAR}, #{projectremark,jdbcType=VARCHAR}, 
+      #{projectmakeperson,jdbcType=VARCHAR}, #{projectmaketime,jdbcType=VARCHAR}, #{projectapproval,jdbcType=VARCHAR}, 
+      #{projectapprovaltime,jdbcType=VARCHAR}, #{projectapprovalstatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.javasm.crm.palautus.entity.AfterSalesAppeal">
+    insert into aftersalesappeal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectname != null">
+        projectname,
+      </if>
+      <if test="projectword != null">
+        projectword,
+      </if>
+      <if test="projectproblem != null">
+        projectproblem,
+      </if>
+      <if test="projectanswer != null">
+        projectanswer,
+      </if>
+      <if test="projectscene != null">
+        projectscene,
+      </if>
+      <if test="projectremark != null">
+        projectremark,
+      </if>
+      <if test="projectmakeperson != null">
+        projectmakeperson,
+      </if>
+      <if test="projectmaketime != null">
+        projectmaketime,
+      </if>
+      <if test="projectapproval != null">
+        projectapproval,
+      </if>
+      <if test="projectapprovaltime != null">
+        projectapprovaltime,
+      </if>
+      <if test="projectapprovalstatus != null">
+        projectapprovalstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectname != null">
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="projectword != null">
+        #{projectword,jdbcType=VARCHAR},
+      </if>
+      <if test="projectproblem != null">
+        #{projectproblem,jdbcType=VARCHAR},
+      </if>
+      <if test="projectanswer != null">
+        #{projectanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="projectscene != null">
+        #{projectscene,jdbcType=VARCHAR},
+      </if>
+      <if test="projectremark != null">
+        #{projectremark,jdbcType=VARCHAR},
+      </if>
+      <if test="projectmakeperson != null">
+        #{projectmakeperson,jdbcType=VARCHAR},
+      </if>
+      <if test="projectmaketime != null">
+        #{projectmaketime,jdbcType=VARCHAR},
+      </if>
+      <if test="projectapproval != null">
+        #{projectapproval,jdbcType=VARCHAR},
+      </if>
+      <if test="projectapprovaltime != null">
+        #{projectapprovaltime,jdbcType=VARCHAR},
+      </if>
+      <if test="projectapprovalstatus != null">
+        #{projectapprovalstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="all" parameterType="com.javasm.crm.palautus.entity.AfterSalesAppeal" resultType="com.javasm.crm.palautus.entity.AfterSalesAppeal">
+  		select * from AfterSalesAppeal
+  		<where>
+  			<if test="projectname!=null and projectname!=''">
+  				and projectname like "%"#{projectname}"%"
+  			</if>
+  			<if test="projectword!=null and projectword!=''">
+  				and projectword like "%"#{projectword}"%"
+  			</if>
+  			<if test="projectmakeperson!=null and projectmakeperson!=''">
+  				and projectmakeperson like "%"#{projectmakeperson}"%"
+  			</if>
+  			<if test="projectapprovalstatus!=null and projectapprovalstatus!=''">
+  				and projectapprovalstatus = #{projectapprovalstatus}
+  			</if>
+  		</where>
+  </select>
+  
+  <delete id="dele" parameterType="com.javasm.crm.palautus.entity.AfterSalesAppeal">
+  		delete from AfterSalesAppeal 
+  		<where>
+  			<if test="projectname!=null and projectname!=''">
+  				and projectname = #{projectname}
+  			</if>
+  			<if test="projectword!=null and projectword!=''">
+  				and projectword = #{projectword}
+  			</if>
+  			<if test="projectmaketime!=null and projectmaketime!=''">
+  				and projectmaketime = #{projectmaketime}
+  			</if>
+  		</where>
+  </delete>
+  
+  
+  <update id="update" parameterType="com.javasm.crm.palautus.entity.AfterSalesAppeal">
+  	update AfterSalesAppeal 
+  	<set>
+  		<if test="projectname!=null and projectname!=''">
+  				 projectname = #{projectname},
+  		</if>
+  		<if test="projectword!=null and projectword!=''">
+  				 projectword = #{projectword},
+  		</if>
+  		<if test="projectproblem!=null and projectproblem!=''">
+  				 projectproblem = #{projectproblem},
+  		</if>
+  		<if test="projectanswer!=null and projectanswer!=''">
+  				 projectanswer = #{projectanswer},
+  		</if>
+  		<if test="projectscene!=null and projectscene!=''">
+  				 projectscene = #{projectscene},
+  		</if>
+  		<if test="projectremark!=null and projectremark!=''">
+  				 projectremark = #{projectremark},
+  		</if>
+  		<if test="projectapproval!=null and projectapproval!=''">
+  				 projectapproval = #{projectapproval},
+  		</if>
+  		<if test="projectapprovaltime!=null and projectapprovaltime!=''">
+  				 projectapprovaltime = #{projectapprovaltime},
+  		</if>
+  		<if test="projectapprovalstatus!=null and projectapprovalstatus!=''">
+  				 projectapprovalstatus = #{projectapprovalstatus},
+  		</if>
+  		<if test="projectapprovalmessage!=null and projectapprovalmessage!=''">
+  				 projectapprovalmessage = #{projectapprovalmessage},
+  		</if>
+  	</set>
+   	where projectmaketime = #{projectmaketime}
+  </update>
+</mapper>

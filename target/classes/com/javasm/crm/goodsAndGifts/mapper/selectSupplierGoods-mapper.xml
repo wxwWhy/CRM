@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 可把映射文件理解成dao实现类，一个namespace即代表一个映射文件 。不同的映射文件的namespace不能相同 -->
+<mapper namespace="com.javasm.crm.goodsAndGifts.mapper.SelectSupplierGoodsDao">
+	<sql id="selectFieldsSupplierGoods">
+		`z_id`,`z_s_id`,`z_f_id`,`z_s_name`,`z_f_name`,`z_purchase_price`,`z_market_price`
+	</sql>
+	
+	<select id="getAllSelectSupplierGoods" parameterType="Integer" resultType="com.javasm.crm.goodsAndGifts.entity.SelectSupplierGoods">
+		select <include refid="selectFieldsSupplierGoods"></include> from `selectsuppliergoods` where `z_s_id`=#{`z_s_id`}
+	</select>
+
+	<insert id="addSupplierGood" parameterType="com.javasm.crm.goodsAndGifts.entity.SelectSupplierGoods">
+		insert into `selectsuppliergoods`(`z_s_id`,`z_f_id`,`z_s_name`,`z_f_name`,`z_purchase_price`,`z_market_price`) values(#{z_s_id},#{z_f_id},#{z_s_name},#{z_f_name},#{z_purchase_price},#{z_market_price})
+	</insert>
+	
+	<delete id="delSupplierGood" parameterType="Integer">
+		delete from `selectsuppliergoods` where `z_id`=#{z_id}
+	</delete>
+
+</mapper>

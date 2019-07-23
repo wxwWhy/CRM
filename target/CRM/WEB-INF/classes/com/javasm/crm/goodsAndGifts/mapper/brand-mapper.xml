@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 可把映射文件理解成dao实现类，一个namespace即代表一个映射文件 。不同的映射文件的namespace不能相同 -->
+<mapper namespace="com.javasm.crm.goodsAndGifts.mapper.BrandDao">
+	
+	<!-- 公共语句块 -->
+	<sql id="selectFields">
+		`brand_id`,`brand_name`,`brand_url`,`brand_describe`
+	</sql>
+	
+	<select id="getAllBrands" parameterType="Integer" resultMap="Brand">
+		select 
+		<include refid="selectFields"></include>
+		from `brand`
+	</select>
+
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 可把映射文件理解成dao实现类，一个namespace即代表一个映射文件 。不同的映射文件的namespace不能相同 -->
+<mapper namespace="com.javasm.crm.goodsAndGifts.mapper.SupplierDao">
+	
+	<!-- 公共语句块 -->
+	<sql id="selectFieldsSupplier">
+		`s_id`,`s_name`,`s_contact`,`s_phone`,`s_email`,`s_address`,`s_bankName`,`s_accountNumber` 
+	</sql>
+	
+	<!--根据id获取供应商-->
+	<select id="getSupplierById" parameterType="com.javasm.crm.goodsAndGifts.entity.Supplier" resultType="com.javasm.crm.goodsAndGifts.entity.Supplier">
+		select <include refid="selectFieldsSupplier"></include> from `supplier` where `s_id`=#{s_id}
+	</select>
+	
+	<!-- 获取表中所有供应商的联系地址 -->
+	<select id="getAllSupplierAddress" resultType="String">
+		select `s_address` from `supplierAllAddress`
+	</select>
+	
+	<!-- 查询所有供应商 -->
+	<select id="getAllSupplier" parameterType="com.javasm.crm.goodsAndGifts.entity.Supplier" resultType="com.javasm.crm.goodsAndGifts.entity.Supplier">
+		select
+		<include refid="selectFieldsSupplier"></include>
+		from `supplier`
+		<where>
+			<if test="s_name !=null and s_name !='' ">
+				and `s_name` like "%"#{s_name}"%"
+			</if>
+		</where>
+		<where>
+			<if test="s_contact !=null and s_contact !='' ">
+				and `s_contact` like "%"#{s_contact}"%"
+			</if>
+		</where>
+		<where>
+			<if test="s_phone !=null and s_phone !='' ">
+				and `s_phone` like "%"#{s_phone}"%"
+			</if>
+		</where>
+		<where>
+			<if test="s_email !=null and s_email !='' ">
+				and `s_email` like "%"#{s_email}"%"
+			</if>
+		</where>
+		<where>
+			<if test="s_address !=null and s_address !='' ">
+				and `s_address` like "%"#{s_address}"%"
+			</if>
+		</where>
+		<where>
+			<if test="s_bankName !=null and s_bankName !='' ">
+				and `s_bankName` like "%"#{s_bankName}"%"
+			</if>
+		</where>
+		<where>
+			<if test="s_accountNumber !=null and s_accountNumber !='' ">
+				and `s_accountNumber` like "%"#{s_accountNumber}"%"
+			</if>
+		</where>
+	</select>
+	
+	<!-- 新增供应商 -->
+	<insert id="addSupplier" parameterType="com.javasm.crm.goodsAndGifts.entity.Supplier">
+		insert into `supplier`(`s_name`,`s_contact`,`s_phone`,`s_email`,`s_address`,`s_bankName`,`s_accountNumber`) values(#{s_name},#{s_contact},#{s_phone},#{s_email},#{s_address},#{s_bankName},#{s_accountNumber})
+	</insert>
+	
+	<!-- 删除供应商 -->
+	<delete id="deleteSupplierById" parameterType="Integer">
+		delete from `supplier` where `s_id`=#{s_id}
+	</delete>
+	
+	<!--修改供应商 -->
+	<update id="updateSupplier" parameterType="com.javasm.crm.goodsAndGifts.entity.Supplier">
+		update `supplier`
+		 <set>
+	      <if test="s_name !=null and s_name !=''">
+	        s_name= #{s_name},
+	      </if>
+	      <if test="s_contact != null and s_contact !=''">
+	        s_contact = #{s_contact},
+	      </if>
+	      <if test="s_phone != null and s_phone !=''">
+	        s_phone = #{s_phone},
+	      </if>
+	      <if test="s_email !=null and s_email !=''">
+	        s_email= #{s_email},
+	      </if>
+	      <if test="s_address != null and s_address !=''">
+	        s_address = #{s_address},
+	      </if>
+	      <if test="s_bankName != null and s_bankName !=''">
+	        s_bankName = #{s_bankName},
+	      </if>
+	      <if test="s_accountNumber != null and s_accountNumber !=''">
+	        s_accountNumber = #{s_accountNumber},
+	      </if>
+	    </set>
+	    where s_id = #{s_id}
+	</update>
+
+</mapper>

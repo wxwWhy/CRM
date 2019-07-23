@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javasm.crm.goodsAndGifts.mapper.GoodsTypeNodeDao">
+  <resultMap id="BaseResultMap" type="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="discrip" jdbcType="VARCHAR" property="discrip" />
+    <result column="pId" jdbcType="VARCHAR" property="pId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+	
+ <!--  子级节点查询（listChild） 根据一级id查询所有的子集-->
+<select id="getNextSubSet" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode" parameterType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode">
+  SELECT id,name FROM goodstype  WHERE pId = #{id}
+</select>
+	
+<!--	 //父级节点查询-->
+<select id="getNodeTree" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode" >
+  SELECT id,name FROM goodstype  WHERE pId IS null
+</select>
+
+
+<!--	 最小leven查询-->
+<select id="minId" resultType="int" >
+			  SELECT tlevel
+			FROM  goodstype
+			WHERE (tlevel IN
+			          (SELECT MIN(tlevel)
+			         FROM goodstype))
+</select>
+<!--	 最小leven查询-->
+<select id="maxId" resultType="int" >
+			 SELECT DISTINCT tlevel
+			FROM  goodstype
+			WHERE (tlevel IN
+			          (SELECT MAX(tlevel)
+			         FROM goodstype))
+</select>
+      
+<!--//查询一级菜单-->
+<select id="getFirstLevel" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode" parameterType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode">
+    SELECT * FROM goodstype  WHERE tlevel =#{tleven} 
+</select>
+<!--根据leven查-->
+<select id="getListByLevel" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode" parameterType="int">
+				    SELECT 
+				  `id`,
+				  `name`,
+				  `discrip`,
+				  `pId`,
+				  `tlevel` 
+				FROM
+				  `crm`.`goodstype` WHERE tlevel = #{leven}
+				LIMIT 0, 1000 ;
+
+</select>
+
+
+<select id="getListBypid" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode" parameterType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode">
+    SELECT * FROM goodstype  WHERE id =#{id} 
+</select>
+
+<select id="getAllType" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode" >
+    SELECT id,pId,name FROM goodstype 
+</select>
+
+<select id="getAllTypeInfo" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode" parameterType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode">
+    SELECT * FROM goodstype 
+	<where>
+		        and id!=1
+	    	<if test="name!=null and name!=''">
+	    		and `name`  like CONCAT(CONCAT('%',#{name}),'%')
+	    	</if>
+	    	<if test="id!=null and id!=''">
+	    		and `id`  like CONCAT(CONCAT('%',#{id}),'%') 
+	    	</if>
+	    	<if test="pId!=null and pId!=''">
+	    		and `pId`  = #{pId}
+	    	</if>
+	    </where> 
+	    
+</select>
+
+
+<select id="getTypesByPid" resultType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode" parameterType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode">
+		   SELECT id FROM goodstype WHERE `name`=#{name}
+</select>
+
+<insert id="inserttype" parameterType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode">
+		   INSERT INTO `goodstype` (
+									  `name`,
+									  `discrip`,
+										pId
+									) 
+									VALUES
+									  (
+									    #{name},
+									    #{discrip,jdbcType=VARCHAR},
+										#{pId}
+									  ) 
+</insert>
+
+<update id="updatetype" parameterType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode">
+		   UPDATE 
+				  `goodstype` 
+				SET
+				  `discrip` = #{discrip},
+				  `name` = #{name} WHERE id = #{id}
+</update>
+<delete id="deletetype" parameterType="com.javasm.crm.goodsAndGifts.entity.GoodsTypeNode">
+		   DELETE FROM goodstype WHERE id = #{id}
+</delete>
+
+
+
+
+
+</mapper>
